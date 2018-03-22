@@ -1,1 +1,0 @@
-python nf_auto.py
