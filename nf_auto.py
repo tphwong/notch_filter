@@ -13,6 +13,7 @@ import nf, nf_header
 com = nf.comOpen('COM32')
 
 # issue commands
+
 nf.reset(com)
 com.reset_input_buffer()
 time.sleep(4)
@@ -46,6 +47,10 @@ com.reset_input_buffer()
 time.sleep(4)
 
 nf.getACRConfig(com)
+com.reset_input_buffer()
+time.sleep(4)
+
+nf.reset(com)
 com.reset_input_buffer()
 time.sleep(4)
 

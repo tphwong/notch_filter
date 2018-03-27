@@ -7,7 +7,9 @@
 
 import serial
 import time
+import math
 import nf_header
+import nf_atten
 
 ########################
 #					   #
@@ -143,6 +145,25 @@ def getACRConfig(ser):	# GET ACR CONFIGURATION
 # Special functions (for HD data test cases) #
 #											 #
 ##############################################
+
+# use loss to determine if there should be a 1-dB attenuation
+def loss(speed, wavelength, distance):
+	return 20 * math.log((4 * math.pi * distance / wavelength), 10) - 20 * math.log((4 * math.pi * (distance - speed) / wavelength), 10)
+
+# allows the setting of attenuation for each filter channel
+def setFilterConfig_handover(ser, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
+	print("Setting attenuation for each filter channel...")
+	packet = nf_header.setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8)
+	ser.write(packet)
+
+	nf_header.getFilterConfig_resp(ser)
+	
+
+
+
+
+
+
 
 # for TC 1 - Handover: FM1 -> FM2
 

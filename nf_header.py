@@ -6,6 +6,8 @@
 #########################################
 
 import serial
+import time
+import math
 
 # global variables for preparing packets
 PREAMBLE = 0xC0
@@ -1127,6 +1129,7 @@ def reportACRState(ser):
 # Special functions (for HD data test cases) #
 #											 #
 ##############################################
+
 def setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
 	# takes in attenuation for each channel
 	# response packet from COM is 86 bytes long

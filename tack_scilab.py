@@ -10,19 +10,19 @@ for i=2:3600
     loss_sec(i)=(20*log10(4*%pi*distance(i)/wavelength))-(20*log10(4*%pi*distance(i-1)/wavelength))
 end
 
-for i=1:60
-    loss_min(i)=0
-    for j=1:60
-        loss_min(i)=loss_min(i)+loss_sec(j*i)
-    end
-end
+# for i=1:60
+    # loss_min(i)=0
+    # for j=1:60
+        # loss_min(i)=loss_min(i)+loss_sec(j*i)
+    # end
+# end
 
-loss_hr=0
-for i=1:60
-    loss_hr=loss_hr+loss_min(i)
-end
+# loss_hr=0
+# for i=1:60
+    # loss_hr=loss_hr+loss_min(i)
+# end
 
-plot((1:60)',loss_min)
+# plot((1:60)',loss_min)
 
 check(1)=0      //attenuate when check=1, do not attenuate when check=0
 num=0
