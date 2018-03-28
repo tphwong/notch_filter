@@ -167,65 +167,75 @@ def setFilterConfig_handover(ser, atten1, atten2, atten3, atten4, atten5, atten6
 
 # for TC 1 - Handover: FM1 -> FM2
 
-def handover_AA_Det(ser, step):	# handover from Ann Arbor to Detroit
+def handover_AA_Det(ser):	# handover from Ann Arbor to Detroit
 	# step is the step size of each attenuation
 	print("Sending command: Set digital filter configuration for HD handover test case...")
 	print("Ann Arbor -> Detroit")
-	while var in range(0, 31):
+	for var in range(0, 31):
 		print("+++ Input variable = ", var, " +++")
-		packet = nf_header.setFilterConfig_handover(var, var, var, var, 30-var, 30-var, 30-var, 30-var)
+		packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, var, var, var, var, 30-var, 30-var, 30-var, 30-var)
 		ser.write(packet)
 	
 		nf_header.getFilterConfig_resp(ser)
 		time.sleep(3)
-		var += step
+	
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 1, 1, 1, var, var, var, var, 30-var, 30-var, 30-var, 30-var)
+	ser.write(packet)
+	
+	nf_header.getFilterConfig_resp(ser)
 		
 def handover_Det_AA(ser):	# handover from Detroit to Ann Arbor
 	print("Sending command: Set digital filter configuration for HD handover test case...")
 	print("Detroit -> Ann Arbor")
 	for var in range(0, 31):
 		print("+++ Input variable = ", var, " +++")
-		packet = nf_header.setFilterConfig_handover(30-var, 30-var, 30-var, 30-var, var, var, var, var)
+		packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 30-var, 30-var, 30-var, 30-var, var, var, var, var)
 		ser.write(packet)
 	
 		nf_header.getFilterConfig_resp(ser)
 		time.sleep(3)
+	
+	packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, var, var, var, var, 30-var, 30-var, 30-var, 30-var)
+	ser.write(packet)
+	
+	nf_header.getFilterConfig_resp(ser)
 
-def fade_in(ser):	# fade out Ann Arbor and Detroit HD freqs -> weak signal
-	print("Sending command: Set digital filter configuration for HD fading test case...")
-	print("Fading out...")
-	for var in range(0, 31):
-		print("+++ Input variable = ", var, " +++")
-		packet = nf_header.setFilterConfig_handover(30-var, 30-var, 30-var, 30-var, 30-var, 30-var, 30-var, 30-var)
-		ser.write(packet)
+# def fade_in(ser):	# fade out Ann Arbor and Detroit HD freqs -> weak signal
+	# print("Sending command: Set digital filter configuration for HD fading test case...")
+	# print("Fading out...")
+	# for var in range(0, 31):
+		# print("+++ Input variable = ", var, " +++")
+		# packet = nf_header.setFilterConfig_handover(30-var, 30-var, 30-var, 30-var, 30-var, 30-var, 30-var, 30-var)
+		# ser.write(packet)
 		
-		nf_header.getFilterConfig_resp(ser)
-		time.sleep(3)
+		# nf_header.getFilterConfig_resp(ser)
+		# time.sleep(3)
 		
-def fade_out(ser):	# fade in Ann Arbor and Detroit HD freqs -> normal signal
-	print("Sending command: Set digital filter configuration for HD fading test case...")
-	print("Fading in...")
-	for var in range(0, 31):
-		print("+++ Input variable = ", var, " +++")
-		packet = nf_header.setFilterConfig_handover(var, var, var, var, var, var, var, var)
-		ser.write(packet)
+# def fade_out(ser):	# fade in Ann Arbor and Detroit HD freqs -> normal signal
+	# print("Sending command: Set digital filter configuration for HD fading test case...")
+	# print("Fading in...")
+	# for var in range(0, 31):
+		# print("+++ Input variable = ", var, " +++")
+		# packet = nf_header.setFilterConfig_handover(var, var, var, var, var, var, var, var)
+		# ser.write(packet)
 		
-		nf_header.getFilterConfig_resp(ser)
-		time.sleep(3)
+		# nf_header.getFilterConfig_resp(ser)
+		# time.sleep(3)
 		
-def signal_off(ser):  # signal cut off, e.g. under a bridge
-	print("Sending command: Set digital filter configuration for HD cut-off test case...")
-	print("Signal cut off...")
-	packet = nf_header.setFilterConfig_handover(30, 30, 30, 30, 30, 30, 30, 30)
-	ser.write(packet)
+# def signal_off(ser):  # signal cut off, e.g. under a bridge
+	# print("Sending command: Set digital filter configuration for HD cut-off test case...")
+	# print("Signal cut off...")
+	# packet = nf_header.setFilterConfig_handover(30, 30, 30, 30, 30, 30, 30, 30)
+	# ser.write(packet)
 	
-	nf_header.getFilterConfig_resp(ser)
-	time.sleep(3)
+	# nf_header.getFilterConfig_resp(ser)
+	# time.sleep(3)
 	
-def signal_on(ser):  # signal resumes after cut off, e.g. coming out from under a bridge
-	print("Signal resumes...")
-	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0)
-	ser.write(packet)
+# def signal_on(ser):  # signal resumes after cut off, e.g. coming out from under a bridge
+	# print("Signal resumes...")
+	# packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0)
+	# ser.write(packet)
 	
-	nf_header.getFilterConfig_resp(ser)
-	time.sleep(3)
+	# nf_header.getFilterConfig_resp(ser)
+	# time.sleep(3)
+	

@@ -518,7 +518,7 @@ def setSystemConfig():
 	BT_OnOff 	= 0x00
 	ALC_OnOff	= 0x00
 	AGC_OnOff	= 0x00
-	MGC_OnOff	= 0x00
+	MGC_OnOff	= 0x01
 	ASD_OnOff	= 0x00
 	ALC_Level	= 0xC0
 	AGC_Level	= 0xDB
@@ -569,21 +569,21 @@ def setFilterConfig():
 	chArray = []
 	# store Ch_OnOff, Ch_StartFreq, Ch_StopFreq, Ch_DspAtten for each channel as an array
 	# and put the arrays into the channel array
-	ch1 = prepChannel(0x01, 0x00000000, 0x00000000, 0x01)
+	ch1 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch1)
-	ch2 = prepChannel(0x01, 0x00000000, 0x00000000, 0x02)
+	ch2 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch2)
-	ch3 = prepChannel(0x01, 0x00000000, 0x00000000, 0x03)
+	ch3 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch3)
-	ch4 = prepChannel(0x01, 0x00000000, 0x00000000, 0x04)
+	ch4 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch4)
-	ch5 = prepChannel(0x01, 0x00000000, 0x00000000, 0x05)
+	ch5 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch5)
-	ch6 = prepChannel(0x01, 0x00000000, 0x00000000, 0x06)
+	ch6 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch6)
-	ch7 = prepChannel(0x01, 0x00000000, 0x00000000, 0x07)
+	ch7 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch7)
-	ch8 = prepChannel(0x01, 0x00000000, 0x00000000, 0x08)
+	ch8 = prepChannel(0x01, 0x053EC600, 0x066FF300, 0x00)
 	chArray.extend(ch8)
 	
 	payload = filterPayload(chArray)
@@ -1130,7 +1130,7 @@ def reportACRState(ser):
 #											 #
 ##############################################
 
-def setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
+def setFilterConfig_handover(ch1_on, ch2_on, ch3_on, ch4_on, ch5_on, ch6_on, ch7_on, ch8_on, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
 	# takes in attenuation for each channel
 	# response packet from COM is 86 bytes long
 	
@@ -1144,21 +1144,21 @@ def setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, att
 	# all channels are used because that makes the attenuation effects on amplitude more significant
 	# ch 1~4 are for 90.7 ~ 92.7 (0x0567F8E0 ~ 0x05867D60)
 	# ch 5~8 are for 104.1 ~ 106.1 (0x063470A0 ~ 0x0652F520)
-	ch1 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, atten1)
+	ch1 = prepChannel(ch1_on, 0x0567F8E0, 0x05867D60, atten1)
 	chArray.extend(ch1)
-	ch2 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, atten2)
+	ch2 = prepChannel(ch2_on, 0x0567F8E0, 0x05867D60, atten2)
 	chArray.extend(ch2)
-	ch3 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, atten3)
+	ch3 = prepChannel(ch3_on, 0x0567F8E0, 0x05867D60, atten3)
 	chArray.extend(ch3)
-	ch4 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, atten4)
+	ch4 = prepChannel(ch4_on, 0x0567F8E0, 0x05867D60, atten4)
 	chArray.extend(ch4)
-	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, atten5)
+	ch5 = prepChannel(ch5_on, 0x063470A0, 0x0652F520, atten5)
 	chArray.extend(ch5)
-	ch6 = prepChannel(0x01, 0x063470A0, 0x0652F520, atten6)
+	ch6 = prepChannel(ch6_on, 0x063470A0, 0x0652F520, atten6)
 	chArray.extend(ch6)
-	ch7 = prepChannel(0x01, 0x063470A0, 0x0652F520, atten7)
+	ch7 = prepChannel(ch7_on, 0x063470A0, 0x0652F520, atten7)
 	chArray.extend(ch7)
-	ch8 = prepChannel(0x01, 0x063470A0, 0x0652F520, atten8)
+	ch8 = prepChannel(ch8_on, 0x063470A0, 0x0652F520, atten8)
 	chArray.extend(ch8)
 	
 	payload = filterPayload(chArray)
