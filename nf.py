@@ -171,15 +171,16 @@ def handover_AA_Det(ser):	# handover from Ann Arbor to Detroit
 	# step is the step size of each attenuation
 	print("Sending command: Set digital filter configuration for HD handover test case...")
 	print("Ann Arbor -> Detroit")
-	for var in range(0, 31):
+	for var in range(0, 35):
 		print("+++ Input variable = ", var, " +++")
-		packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, var, var, var, var, 30-var, 30-var, 30-var, 30-var)
+		packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, var, var, var, var, 35-var, 35-var, 35-var, 35-var)
 		ser.write(packet)
 	
 		nf_header.getFilterConfig_resp(ser)
 		time.sleep(3)
+		time.sleep(2)
 	
-	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 1, 1, 1, var, var, var, var, 30-var, 30-var, 30-var, 30-var)
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, var, var, var, var, 35-var, 35-var, 35-var, 35-var)
 	ser.write(packet)
 	
 	nf_header.getFilterConfig_resp(ser)
@@ -187,15 +188,16 @@ def handover_AA_Det(ser):	# handover from Ann Arbor to Detroit
 def handover_Det_AA(ser):	# handover from Detroit to Ann Arbor
 	print("Sending command: Set digital filter configuration for HD handover test case...")
 	print("Detroit -> Ann Arbor")
-	for var in range(0, 31):
+	for var in range(0, 35):
 		print("+++ Input variable = ", var, " +++")
-		packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 30-var, 30-var, 30-var, 30-var, var, var, var, var)
+		packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 35-var, 35-var, 35-var, 35-var, var, var, var, var)
 		ser.write(packet)
 	
 		nf_header.getFilterConfig_resp(ser)
 		time.sleep(3)
+		time.sleep(2)
 	
-	packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, var, var, var, var, 30-var, 30-var, 30-var, 30-var)
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 35-var, 35-var, 35-var, 35-var, var, var, var, var)
 	ser.write(packet)
 	
 	nf_header.getFilterConfig_resp(ser)
