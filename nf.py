@@ -9,7 +9,6 @@ import serial
 import time
 import math
 import nf_header
-import nf_atten
 
 ########################
 #					   #
@@ -157,17 +156,77 @@ def setFilterConfig_handover(ser, atten1, atten2, atten3, atten4, atten5, atten6
 	ser.write(packet)
 
 	nf_header.getFilterConfig_resp(ser)
+
+def fade_in_AA(ser, maxAtten, step):
+	# AA signal fade in at constant rate
+	print("91.7MHz fading in... with step size ", step)
+	var = 0
+	while (var  < maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35-var, 35, 35, 35, 0, 0, 0, 0)
+			ser.write(packet)
+		elif (var > 35 and var < 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 35-(var-35), 35, 35, 0, 0, 0, 0)
+			ser.write(packet)
+		elif (var > 70 and var < 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 35-(var-70), 35, 0, 0, 0, 0)
+			ser.write(packet)
+		else: # if (var > 105 and var < 140)
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 35-(var-105), 0, 0, 0, 0)
+			ser.write(packet)
 	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
+		
+def fade_in_Det(ser, maxAtten, step):
+	# Detroit signal fade in at constant rate
+	print("105.1MHz fading in... with step size ", step)
+	var = 0
+	while (var  < maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 35-var, 35, 35, 35)
+			ser.write(packet)
+		elif (var > 35 and var < 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35-(var-35), 35, 35)
+			ser.write(packet)
+		elif (var > 70 and var < 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35-(var-70), 35)
+			ser.write(packet)
+		else: # if (var > 105 and var < 140)
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35-(var-105))
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
+		
+def simul_fade_in(ser, maxAtten, step):
+	# fade in AA and Detroit signals simultaneously
+	print("Simultaneous fade in... with step size ", step)
+	var = 0
+	while (var  < maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35-var, 35, 35, 35, 35-var, 35, 35, 35)
+			ser.write(packet)
+		elif (var > 35 and var < 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 35-(var-35), 35, 35, 0, 35-(var-35), 35, 35)
+			ser.write(packet)
+		elif (var > 70 and var < 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 35-(var-70), 35, 0, 0, 35-(var-70), 35)
+			ser.write(packet)
+		else: # if (var > 105 and var < 140)
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 35-(var-105), 0, 0, 0, 35-(var-105))
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
 
-
-
-
-
-
-
-# for TC 1 - Handover: FM1 -> FM2
-
-def handover_AA_Det(ser):	# handover from Ann Arbor to Detroit
+def handover_simple_AA_Det(ser):	# handover from Ann Arbor to Detroit
 	# step is the step size of each attenuation
 	print("Sending command: Set digital filter configuration for HD handover test case...")
 	print("Ann Arbor -> Detroit")
@@ -185,7 +244,7 @@ def handover_AA_Det(ser):	# handover from Ann Arbor to Detroit
 	
 	nf_header.getFilterConfig_resp(ser)
 		
-def handover_Det_AA(ser):	# handover from Detroit to Ann Arbor
+def handover_simple_Det_AA(ser):	# handover from Detroit to Ann Arbor
 	print("Sending command: Set digital filter configuration for HD handover test case...")
 	print("Detroit -> Ann Arbor")
 	for var in range(0, 35):
@@ -202,6 +261,9 @@ def handover_Det_AA(ser):	# handover from Detroit to Ann Arbor
 	
 	nf_header.getFilterConfig_resp(ser)
 
+	
+	
+	
 # def fade_in(ser):	# fade out Ann Arbor and Detroit HD freqs -> weak signal
 	# print("Sending command: Set digital filter configuration for HD fading test case...")
 	# print("Fading out...")
