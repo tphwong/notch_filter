@@ -149,13 +149,13 @@ def getACRConfig(ser):	# GET ACR CONFIGURATION
 def loss(speed, wavelength, distance):
 	return 20 * math.log((4 * math.pi * distance / wavelength), 10) - 20 * math.log((4 * math.pi * (distance - speed) / wavelength), 10)
 
-# allows the setting of attenuation for each filter channel
-def setFilterConfig_handover(ser, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
-	print("Setting attenuation for each filter channel...")
-	packet = nf_header.setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8)
-	ser.write(packet)
+# # allows the setting of attenuation for each filter channel
+# def setFilterConfig_handover(ser, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
+	# print("Setting attenuation for each filter channel...")
+	# packet = nf_header.setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8)
+	# ser.write(packet)
 
-	nf_header.getFilterConfig_resp(ser)
+	# nf_header.getFilterConfig_resp(ser)
 
 def fade_in_AA(ser, maxAtten, step):
 	# AA signal fade in at constant rate
@@ -163,16 +163,16 @@ def fade_in_AA(ser, maxAtten, step):
 	var = 0
 	while (var  < maxAtten):
 		print("+++ Input variable = ", var, " +++")
-		if (var < 35):
+		if (var < 35 or var == 35):
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35-var, 35, 35, 35, 0, 0, 0, 0)
 			ser.write(packet)
-		elif (var > 35 and var < 70):
+		elif ((var > 35 and var < 70) or var == 70):
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 35-(var-35), 35, 35, 0, 0, 0, 0)
 			ser.write(packet)
-		elif (var > 70 and var < 105):
+		elif ((var > 70 and var < 105) or var == 105):
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 35-(var-70), 35, 0, 0, 0, 0)
 			ser.write(packet)
-		else: # if (var > 105 and var < 140)
+		else: 
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 35-(var-105), 0, 0, 0, 0)
 			ser.write(packet)
 	
@@ -184,18 +184,18 @@ def fade_in_Det(ser, maxAtten, step):
 	# Detroit signal fade in at constant rate
 	print("105.1MHz fading in... with step size ", step)
 	var = 0
-	while (var  < maxAtten):
+	while (var  < maxAtten or var == maxAtten):
 		print("+++ Input variable = ", var, " +++")
-		if (var < 35):
+		if (var < 35 or var == 35):
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 35-var, 35, 35, 35)
 			ser.write(packet)
-		elif (var > 35 and var < 70):
+		elif ((var > 35 and var < 70) or var == 70):
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35-(var-35), 35, 35)
 			ser.write(packet)
-		elif (var > 70 and var < 105):
+		elif ((var > 70 and var < 105) or var == 105):
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35-(var-70), 35)
 			ser.write(packet)
-		else: # if (var > 105 and var < 140)
+		else: 
 			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35-(var-105))
 			ser.write(packet)
 	
@@ -207,25 +207,94 @@ def simul_fade_in(ser, maxAtten, step):
 	# fade in AA and Detroit signals simultaneously
 	print("Simultaneous fade in... with step size ", step)
 	var = 0
-	while (var  < maxAtten):
+	while (var  < maxAtten or var == maxAtten):
 		print("+++ Input variable = ", var, " +++")
-		if (var < 35):
-			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35-var, 35, 35, 35, 35-var, 35, 35, 35)
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35-var, 35, 35, 35, 35-var, 35, 35, 35)
 			ser.write(packet)
-		elif (var > 35 and var < 70):
-			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 35-(var-35), 35, 35, 0, 35-(var-35), 35, 35)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 35-(var-35), 35, 35, 0, 35-(var-35), 35, 35)
 			ser.write(packet)
-		elif (var > 70 and var < 105):
-			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 35-(var-70), 35, 0, 0, 35-(var-70), 35)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 35-(var-70), 35, 0, 0, 35-(var-70), 35)
 			ser.write(packet)
-		else: # if (var > 105 and var < 140)
-			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 35-(var-105), 0, 0, 0, 35-(var-105))
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 35-(var-105), 0, 0, 0, 35-(var-105))
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
+		
+def fade_out_AA(ser, maxAtten, step):
+	# AA signal fade out at constant rate
+	print("91.7MHz fading out... with step size ", step)
+	var = 0
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, var, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35, var-35, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35, 35, var-70, 0, 0, 0, 0, 0)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 35, 35, 35, var-105, 0, 0, 0, 0)
 			ser.write(packet)
 	
 		nf_header.getFilterConfig_resp(ser)
 		var += step
 		time.sleep(1)
 
+def fade_out_Det(ser, maxAtten, step):
+	# Det signal fade out at constant rate
+	print("105.1MHz fading out... with step size ", step)
+	var = 0
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, var, 0, 0, 0)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 35, var-35, 0, 0)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 35, 35, var-70, 0)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 35, 35, 35, var-105)
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
+		
+def simul_fade_out(ser, maxAtten, step):
+	# fade out AA and Detroit signals simultaneously
+	print("Simultaneous fade out... with step size ", step)
+	var = 0
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, var, 0, 0, 0, var, 0, 0, 0)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35, var-35, 0, 0, 35, var-35, 0, 0)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35, 35, var-70, 0, 35, 35, var-70, 0)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35, 35, 35, var-105, 35, 35, 35, var-105)
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
+		
 def handover_simple_AA_Det(ser):	# handover from Ann Arbor to Detroit
 	# step is the step size of each attenuation
 	print("Sending command: Set digital filter configuration for HD handover test case...")
@@ -260,9 +329,114 @@ def handover_simple_Det_AA(ser):	# handover from Detroit to Ann Arbor
 	ser.write(packet)
 	
 	nf_header.getFilterConfig_resp(ser)
+	
+def handover_const_atten_AA_Det(ser, maxAtten, step):
+	# AA signal fade out at constant rate; Det signal fade in at constant rate
+	print("91.7MHz fading out and 105.1 fading in... with step size ", step)
+	var = 0
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, var, 0, 0, 0, 35-var, 35, 35, 35)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35, var-35, 0, 0, 0, 35-(var-35), 35, 35)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35, 35, var-70, 0, 0, 0, 35-(var-70), 35)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35, 35, 35, var-105, 0, 0, 0, 35-(var-105))
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
 
+def handover_const_atten_Det_AA(ser, maxAtten, step):
+	# AA signal fade in at constant rate; Det signal fade out at constant rate
+	print("91.7MHz fading in and 105.1 fading out... with step size ", step)
+	var = 0
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 35-var, 35, 35, 35, var, 0, 0, 0)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 35-(var-35), 35, 35, 35, var-35, 0, 0)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 35-(var-70), 35, 35, 35, var-70, 0)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 35-(var-105), 35, 35, 35, var-105)
+			ser.write(packet)
 	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		time.sleep(1)
 	
+def handover_unstable_AA_Det(ser, maxAtten, step, period):
+	# AA signal fade out at constant rate; Det signal fade in at constant rate
+	# AA signal is unstable (periodically toggle on/off)
+	print("91.7MHz fading out and 105.1 fading in... with step size ", step)
+	var = 0
+	timer = 0	# keeping track of time -> toggle signal every period
+	signalOn = 1	# flag for toggling signal on/off
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		
+		# toggle the signalOn flag every period
+		if ((timer != 0) and (timer % period == 0)):	signalOn = 1- signalOn
+		
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(signalOn, signalOn, signalOn, signalOn, 1, 1, 1, 1, var, 0, 0, 0, 35-var, 35, 35, 35)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(signalOn, signalOn, signalOn, signalOn, 1, 1, 1, 1, 35, var-35, 0, 0, 0, 35-(var-35), 35, 35)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(signalOn, signalOn, signalOn, signalOn, 1, 1, 1, 1, 35, 35, var-70, 0, 0, 0, 35-(var-70), 35)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(signalOn, signalOn, signalOn, signalOn, 1, 1, 1, 1, 35, 35, 35, var-105, 0, 0, 0, 35-(var-105))
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		timer += 1
+		time.sleep(1)	
+	
+def handover_unstable_Det_AA(ser, maxAtten, step, period):
+	# AA signal fade in at constant rate; Det signal fade in at constant rate
+	# AA signal is unstable (periodically toggle on/off)
+	print("91.7MHz fading in and 105.1 fading out... with step size ", step)
+	var = 0
+	timer = 0	# keeping track of time -> toggle signal every period
+	signalOn = 1	# flag for toggling signal on/off
+	while (var  < maxAtten or var == maxAtten):
+		print("+++ Input variable = ", var, " +++")
+		
+		# toggle the signalOn flag every period
+		if ((timer != 0) and (timer % period == 0)):	signalOn = 1 - signalOn
+		
+		if (var < 35 or var == 35):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, signalOn, signalOn, signalOn, signalOn, 35-var, 35, 35, 35, var, 0, 0, 0)
+			ser.write(packet)
+		elif ((var > 35 and var < 70) or var == 70):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, signalOn, signalOn, signalOn, signalOn, 0, 35-(var-35), 35, 35, 35, var-35, 0, 0)
+			ser.write(packet)
+		elif ((var > 70 and var < 105) or var == 105):
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, signalOn, signalOn, signalOn, signalOn, 0, 0, 35-(var-70), 35, 35, 35, var-70, 0)
+			ser.write(packet)
+		else: 
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, signalOn, signalOn, signalOn, signalOn, 0, 0, 0, 35-(var-105), 35, 35, 35, var-105)
+			ser.write(packet)
+	
+		nf_header.getFilterConfig_resp(ser)
+		var += step
+		timer += 1
+		time.sleep(1)	
 	
 # def fade_in(ser):	# fade out Ann Arbor and Detroit HD freqs -> weak signal
 	# print("Sending command: Set digital filter configuration for HD fading test case...")
