@@ -1,9 +1,9 @@
-#########################################
-# NOTCH FILTER PROJECT 					#
-#										#
+##############################
+# NOTCH FILTER PROJECT 							#
+#																#
 # Written by Timothy Wong and Tack Lee	#	
-# ver1.0	Last revised: 3/13/2018 	#
-#########################################
+# ver1.0	Last revised: 4/4/2018 				#
+##############################
 
 import serial
 import time
@@ -16,9 +16,9 @@ TRAILER = 0xC0
 # debug mode to toggle between sets of print statements
 DEBUG_ON = False
 
-####################
+################
 # HELPER FUNCTIONS #
-####################
+################
 
 def fourByteMSB(num):
 	# returns the most significant byte from a 4-byte input number
@@ -207,9 +207,9 @@ def readPacket(ser):
 	return packet
 	
 	
-#####################
+##################
 # PROTOCOL COMMANDS #
-#####################
+##################
 	
 def reset():
 	cmd = 0x86
@@ -1124,11 +1124,11 @@ def reportACRState(ser):
 			print("Trailer:	",''.join('{:02x}'.format(trailer)))	
 			
 			
-##############################################
-#											 #
-# Special functions (for HD data test cases) #
-#											 #
-##############################################
+##############################
+#											 				     #
+# Special functions (for HD data test cases)   #
+#											 				     #
+##############################
 
 def setFilterConfig_handover(ch1_on, ch2_on, ch3_on, ch4_on, ch5_on, ch6_on, ch7_on, ch8_on, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
 	# takes in attenuation for each channel

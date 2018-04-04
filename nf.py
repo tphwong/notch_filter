@@ -1,20 +1,20 @@
-#########################################
-# NOTCH FILTER PROJECT 					#
-#										#
+##############################
+# NOTCH FILTER PROJECT 							#
+#																#
 # Written by Timothy Wong and Tack Lee	#	
-# ver1.0	Last revised: 3/13/2018 	#
-#########################################
+# ver1.0	Last revised: 4/4/2018 				#
+##############################
 
 import serial
 import time
 import math
 import nf_header
 
-########################
-#					   #
+################
+#					  			  #
 # Serial COM functions #
-#					   #
-########################
+#					   			  #
+################
 
 def comOpen(port):
 	# initiate serial communication
@@ -31,11 +31,11 @@ def comClose(ser):
 	print("Serial connection closed.")
 	
 	
-#####################
-#					#
+################
+#								#
 # Protocol commands #
-#					#
-#####################
+#								#
+################
 
 def reset(ser):	# RESET
 	# prepare packet as a byte array and send through COM
@@ -110,9 +110,9 @@ def getFilterConfig(ser):	# GET DIGITAL FILTER CONFIGURATION
 	# (1+4+4+1) bytes per channel * 8 channels + 6 bytes from header, etc. 
 	nf_header.getFilterConfig_resp(ser)	
 	
-#-----------------------------------------------#	
+#-----------------------------------------------------------#	
 # ACR Commands (not used for automated testing)	#
-#-----------------------------------------------#
+#-----------------------------------------------------------#
 
 def setACRConfig(ser):	# SET ACR CONFIGURATION
 	# prepare packet as a byte array and send through COM
@@ -139,11 +139,11 @@ def getACRConfig(ser):	# GET ACR CONFIGURATION
 	nf_header.getACRConfig_resp(ser)
 	
 	
-##############################################
-#											 #
-# Special functions (for HD data test cases) #
-#											 #
-##############################################
+##############################
+#															    #
+# Special functions (for HD data test cases)  #
+#											 				    #
+##############################
 
 # use loss to determine if there should be a 1-dB attenuation
 def loss(speed, wavelength, distance):
