@@ -438,6 +438,57 @@ def handover_unstable_Det_AA(ser, maxAtten, step, period):
 		timer += 1
 		time.sleep(1)	
 	
+def handover_unstable_simple_AA(ser, duration, period):
+	# AA signal is periodically toggled on/off
+	print("91.7MHz signal is unstable... toggled on/off every ", period, " seconds")
+	timer = 0	# keeping track of time -> toggle signal every period
+	signalOn = 1	# flag for toggling signal on/off
+	periodCnt = 0	# keep count of the number of periods passed
+	
+	# precondition: 91.7MHz and 105.1MHz without attenuation
+	packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	
+	while (timer < duration):
+		# toggle the signalOn flag every period
+		if ((timer != 0) and (timer % period == 0)):	
+			periodCnt += 1
+			print("Period count: ", periodCnt)
+			signalOn = 1 - signalOn
+			packet = nf_header.setFilterConfig_handover(signalOn, signalOn, signalOn, signalOn, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+		
+		timer += 1
+		time.sleep(1)
+		
+def handover_unstable_simple_Det(ser, duration, period):
+	# Detroit signal is periodically toggled on/off
+	print("105.1MHz signal is unstable... toggled on/off every ", period, " seconds")
+	timer = 0	# keeping track of time -> toggle signal every period
+	signalOn = 1	# flag for toggling signal on/off
+	periodCnt = 0	# keep count of the number of periods passed
+	
+	# precondition: 91.7MHz and 105.1MHz without attenuation
+	packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	
+	while (timer < duration):
+		# toggle the signalOn flag every period
+		if ((timer != 0) and (timer % period == 0)):	
+			periodCnt += 1
+			print("Period count: ", periodCnt)
+			signalOn = 1 - signalOn
+			packet = nf_header.setFilterConfig_handover(1, 1, 1, 1, signalOn, signalOn, signalOn, signalOn, 0, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+		
+		timer += 1
+		time.sleep(1)
+	
+	
 # def fade_in(ser):	# fade out Ann Arbor and Detroit HD freqs -> weak signal
 	# print("Sending command: Set digital filter configuration for HD fading test case...")
 	# print("Fading out...")
