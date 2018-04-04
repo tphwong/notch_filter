@@ -1,0 +1,522 @@
+Serial connection established.
+105.1MHz signal is unstable... toggled on/off every  5  seconds
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	     -1 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	     -1 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	     -1 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	     -1 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	ON
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      0 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	ON
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      0 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	ON
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      0 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	ON
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      0 dBm
+ch 8 gain:	     60 dB
+Period count:  1
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      2 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      2 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      2 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      2 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	OFF
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      2 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	OFF
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      2 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	OFF
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      2 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	OFF
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      2 dBm
+ch 8 gain:	     60 dB
+Period count:  2
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      0 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      0 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      0 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      0 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	ON
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      0 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	ON
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      0 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	ON
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      0 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	ON
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      0 dBm
+ch 8 gain:	     60 dB
+Period count:  3
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      3 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      3 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      3 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      3 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	OFF
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      3 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	OFF
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      3 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	OFF
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      3 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	OFF
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      3 dBm
+ch 8 gain:	     60 dB
+Period count:  4
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      0 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      0 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      0 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      0 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	ON
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      0 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	ON
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      0 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	ON
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      0 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	ON
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      0 dBm
+ch 8 gain:	     60 dB
+Period count:  5
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      2 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      2 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      2 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      2 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	OFF
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      2 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	OFF
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      2 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	OFF
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      2 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	OFF
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      2 dBm
+ch 8 gain:	     60 dB
+Period count:  6
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	     -1 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	     -1 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	     -1 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	     -1 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	ON
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      0 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	ON
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      0 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	ON
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      0 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	ON
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      0 dBm
+ch 8 gain:	     60 dB
+Period count:  7
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      2 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      2 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      2 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      2 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	OFF
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      2 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	OFF
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      2 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	OFF
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      2 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	OFF
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      2 dBm
+ch 8 gain:	     60 dB
+Period count:  8
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	     -1 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	     -1 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	     -1 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	     -1 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	ON
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      0 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	ON
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      0 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	ON
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      0 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	ON
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      0 dBm
+ch 8 gain:	     60 dB
+Period count:  9
+=================
+Response from COM
+=================
+ch 1 on/off:	ON
+ch 1 startf:	  90.70 MHz
+ch 1 stopf:	  92.70 MHz
+ch 1 stten:	      0 dB
+ch 1 outpwr:	      2 dBm
+ch 1 gain:	     60 dB
+ch 2 on/off:	ON
+ch 2 startf:	  90.70 MHz
+ch 2 stopf:	  92.70 MHz
+ch 2 stten:	      0 dB
+ch 2 outpwr:	      2 dBm
+ch 2 gain:	     60 dB
+ch 3 on/off:	ON
+ch 3 startf:	  90.70 MHz
+ch 3 stopf:	  92.70 MHz
+ch 3 stten:	      0 dB
+ch 3 outpwr:	      2 dBm
+ch 3 gain:	     60 dB
+ch 4 on/off:	ON
+ch 4 startf:	  90.70 MHz
+ch 4 stopf:	  92.70 MHz
+ch 4 stten:	      0 dB
+ch 4 outpwr:	      2 dBm
+ch 4 gain:	     60 dB
+ch 5 on/off:	OFF
+ch 5 startf:	 104.10 MHz
+ch 5 stopf:	 106.10 MHz
+ch 5 stten:	      0 dB
+ch 5 outpwr:	      2 dBm
+ch 5 gain:	     60 dB
+ch 6 on/off:	OFF
+ch 6 startf:	 104.10 MHz
+ch 6 stopf:	 106.10 MHz
+ch 6 stten:	      0 dB
+ch 6 outpwr:	      2 dBm
+ch 6 gain:	     60 dB
+ch 7 on/off:	OFF
+ch 7 startf:	 104.10 MHz
+ch 7 stopf:	 106.10 MHz
+ch 7 stten:	      0 dB
+ch 7 outpwr:	      2 dBm
+ch 7 gain:	     60 dB
+ch 8 on/off:	OFF
+ch 8 startf:	 104.10 MHz
+ch 8 stopf:	 106.10 MHz
+ch 8 stten:	      0 dB
+ch 8 outpwr:	      2 dBm
+ch 8 gain:	     60 dB
+Serial connection closed.

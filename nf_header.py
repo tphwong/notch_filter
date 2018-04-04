@@ -700,34 +700,12 @@ def setACRConfig():
 	# for each ACR line as an array and put the arrays into the ACR array
 	# prepChannel() x 8 for each ACRPrepLine() 
 	ACR1_OnOff = 0x01
-	ACR1_LeadTime = 0x000000FF
+	ACR1_LeadTime = 0x00000001
 	# create a channel array to store parameters from 8 channels
 	chArray = []
 	# store Ch_OnOff, Ch_StartFreq, Ch_StopFreq, Ch_DspAtten for each channel as an array
 	# and put the arrays into the channel array
-	ch1 = prepChannel(0x01, 0x00000000, 0x00000000, 0x01)
-	chArray.append(ch1)
-	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x02)
-	chArray.append(ch2)
-	ch3 = prepChannel(0x00, 0x00000000, 0x00000000, 0x03)
-	chArray.append(ch3)
-	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x04)
-	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x05)
-	chArray.append(ch5)
-	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x06)
-	chArray.append(ch6)
-	ch7 = prepChannel(0x00, 0x00000000, 0x00000000, 0x07)
-	chArray.append(ch7)
-	ch8 = prepChannel(0x00, 0xFFFFFFFF, 0x00000000, 0x08)
-	chArray.append(ch8)
-	line1 = ACRPrepLine(ACR1_OnOff, ACR1_LeadTime, chArray)
-	acrArray.append(line1)
-	
-	ACR2_OnOff = 0x00
-	ACR2_LeadTime = 0x00000000
-	chArray = []
-	ch1 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch1 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
 	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
@@ -735,7 +713,29 @@ def setACRConfig():
 	chArray.append(ch3)
 	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
+	chArray.append(ch5)
+	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	chArray.append(ch6)
+	ch7 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	chArray.append(ch7)
+	ch8 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	chArray.append(ch8)
+	line1 = ACRPrepLine(ACR1_OnOff, ACR1_LeadTime, chArray)
+	acrArray.append(line1)
+	
+	ACR2_OnOff = 0x01
+	ACR2_LeadTime = 0x00000001
+	chArray = []
+	ch1 = prepChannel(0x00, 0x0567F8E0, 0x05867D60, 0x00)
+	chArray.append(ch1)
+	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	chArray.append(ch2)
+	ch3 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	chArray.append(ch3)
+	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	chArray.append(ch4)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
 	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
@@ -746,10 +746,10 @@ def setACRConfig():
 	line2 = ACRPrepLine(ACR2_OnOff, ACR2_LeadTime, chArray)
 	acrArray.append(line2)
 	
-	ACR3_OnOff = 0x00
-	ACR3_LeadTime = 0x00000000
+	ACR3_OnOff = 0x01
+	ACR3_LeadTime = 0x00000001
 	chArray = []
-	ch1 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch1 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
 	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
@@ -757,7 +757,7 @@ def setACRConfig():
 	chArray.append(ch3)
 	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
 	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
@@ -768,10 +768,10 @@ def setACRConfig():
 	line3 = ACRPrepLine(ACR3_OnOff, ACR3_LeadTime, chArray)
 	acrArray.append(line3)
 	
-	ACR4_OnOff = 0x00
-	ACR4_LeadTime = 0x00000000
+	ACR4_OnOff = 0x01
+	ACR4_LeadTime = 0x00000001
 	chArray = []
-	ch1 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch1 = prepChannel(0x00, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
 	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
@@ -779,7 +779,7 @@ def setACRConfig():
 	chArray.append(ch3)
 	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
 	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
@@ -790,10 +790,10 @@ def setACRConfig():
 	line4 = ACRPrepLine(ACR4_OnOff, ACR4_LeadTime, chArray)
 	acrArray.append(line4)
 	
-	ACR5_OnOff = 0x00
-	ACR5_LeadTime = 0x00000000
+	ACR5_OnOff = 0x01
+	ACR5_LeadTime = 0x00000001
 	chArray = []
-	ch1 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch1 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
 	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
@@ -801,7 +801,7 @@ def setACRConfig():
 	chArray.append(ch3)
 	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
 	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
@@ -812,10 +812,10 @@ def setACRConfig():
 	line5 = ACRPrepLine(ACR5_OnOff, ACR5_LeadTime, chArray)
 	acrArray.append(line5)
 	
-	ACR6_OnOff = 0x00
-	ACR6_LeadTime = 0x00000000
+	ACR6_OnOff = 0x01
+	ACR6_LeadTime = 0x00000001
 	chArray = []
-	ch1 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch1 = prepChannel(0x00, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
 	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
@@ -823,7 +823,7 @@ def setACRConfig():
 	chArray.append(ch3)
 	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
 	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
@@ -834,10 +834,10 @@ def setACRConfig():
 	line6 = ACRPrepLine(ACR6_OnOff, ACR6_LeadTime, chArray)
 	acrArray.append(line6)
 	
-	ACR7_OnOff = 0x00
-	ACR7_LeadTime = 0x00000000
+	ACR7_OnOff = 0x01
+	ACR7_LeadTime = 0x00000001
 	chArray = []
-	ch1 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch1 = prepChannel(0x01, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
 	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
@@ -845,7 +845,7 @@ def setACRConfig():
 	chArray.append(ch3)
 	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
 	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
@@ -859,21 +859,21 @@ def setACRConfig():
 	ACR8_OnOff = 0x01
 	ACR8_LeadTime = 0x00000001
 	chArray = []
-	ch1 = prepChannel(0x01, 0x00000000, 0x00000000, 0x01)
+	ch1 = prepChannel(0x00, 0x0567F8E0, 0x05867D60, 0x00)
 	chArray.append(ch1)
-	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x02)
+	ch2 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch2)
-	ch3 = prepChannel(0x00, 0x00000000, 0x00000000, 0x03)
+	ch3 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch3)
-	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x04)
+	ch4 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch4)
-	ch5 = prepChannel(0x00, 0x00000000, 0x00000000, 0x05)
+	ch5 = prepChannel(0x01, 0x063470A0, 0x0652F520, 0x00)
 	chArray.append(ch5)
-	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x06)
+	ch6 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch6)
-	ch7 = prepChannel(0x00, 0x00000000, 0x00000000, 0x07)
+	ch7 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch7)
-	ch8 = prepChannel(0x01, 0xFFFFFFFF, 0x00000000, 0x08)
+	ch8 = prepChannel(0x00, 0x00000000, 0x00000000, 0x00)
 	chArray.append(ch8)
 	line8 = ACRPrepLine(ACR8_OnOff, ACR8_LeadTime, chArray)
 	acrArray.append(line8)
