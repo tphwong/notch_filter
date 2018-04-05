@@ -654,7 +654,7 @@ def getFilterConfig_resp(ser):
 				stopfreq=packet[i*12+9:i*12+13]
 				print("ch",i+1,"stopf:	",':'.join('{:02x}'.format(x) for x in stopfreq))
 				atten=packet[i*12+13]
-				print("ch",i+1,"stten:	",''.join('{:02x}'.format(atten)))
+				print("ch",i+1,"atten:	",''.join('{:02x}'.format(atten)))
 				outpwr=packet[i*12+14]
 				print("ch",i+1,"outpwr:	",''.join('{:02x}'.format(outpwr)))
 				gain=packet[i*12+15]
@@ -1129,6 +1129,10 @@ def reportACRState(ser):
 # Special functions (for HD data test cases)   #
 #											 				     #
 ##############################
+
+def loss(speed, wavelength, distance):
+	# help determine if there should be a 1-dB attenuation at a particular instant
+	return 20 * math.log((4 * math.pi * distance / wavelength), 10) - 20 * math.log((4 * math.pi * (distance - speed) / wavelength), 10)
 
 def setFilterConfig_handover(ch1_on, ch2_on, ch3_on, ch4_on, ch5_on, ch6_on, ch7_on, ch8_on, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
 	# takes in attenuation for each channel

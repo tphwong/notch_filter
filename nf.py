@@ -145,18 +145,6 @@ def getACRConfig(ser):	# GET ACR CONFIGURATION
 #											 				    #
 ##############################
 
-# use loss to determine if there should be a 1-dB attenuation
-def loss(speed, wavelength, distance):
-	return 20 * math.log((4 * math.pi * distance / wavelength), 10) - 20 * math.log((4 * math.pi * (distance - speed) / wavelength), 10)
-
-# # allows the setting of attenuation for each filter channel
-# def setFilterConfig_handover(ser, atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8):
-	# print("Setting attenuation for each filter channel...")
-	# packet = nf_header.setFilterConfig_handover(atten1, atten2, atten3, atten4, atten5, atten6, atten7, atten8)
-	# ser.write(packet)
-
-	# nf_header.getFilterConfig_resp(ser)
-
 def signalsOff(ser):		# after signals off, radio state goes from monitoring to AF searching to band scan mode in 35 seconds
 	print("All channels off...")
 	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -305,6 +293,41 @@ def fade_out_AA(ser, maxAtten, step):
 		nf_header.getFilterConfig_resp(ser)
 		var += step
 		time.sleep(3)
+		
+def real_fade_out_AA(ser, speed, wavelength, distance, height, duration, maxDist):
+	# simulate a realistic fade-out of 91.7MHz
+	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
+	#										max distance for signal cut-off (from Earth curvature)
+	runningLoss = 0
+	curAtten = 0
+	
+	for i in range(0, duration):
+		distance += speed
+		# if maxDist is reached, set to max attenuation
+		if (distance > maxDist or distance == maxDist):
+			print("Reached max distance.")
+			packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+			return
+		
+		else: 
+			runningLoss += nf_header.loss(speed, wavelength, distance)
+			if (runningLoss >= 1):
+				runningLoss -= 1
+				curAtten += 1
+				print("Time: ", i, ",	Current Attenuation: ", curAtten)
+				packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, curAtten, 0, 0, 0, 0, 0, 0, 0)
+				ser.write(packet)
+				nf_header.getFilterConfig_resp(ser)
+				time.sleep(1)
+				
+			else:
+				packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, curAtten, 0, 0, 0, 0, 0, 0, 0)
+				ser.write(packet)
+				nf_header.getFilterConfig_resp(ser)
+				time.sleep(1)
+			
 
 def fade_out_Det(ser, maxAtten, step):
 	# Det signal fade out at constant rate
