@@ -235,8 +235,44 @@ def fade_in_Det(ser, maxAtten, step):
 	
 		nf_header.getFilterConfig_resp(ser)
 		var += step
-		time.sleep(1)
+		time.sleep(3)
 		
+def fade_in_inst_AA(ser):
+	# AA signal instantaneous fade in (from max atten to no atten instantaneously)
+	print("91.7MHz instantaneous fade in...")
+	
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	print("Instantaneously fade in now!")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(3)
+	
+def fade_in_inst_Det(ser):
+	# Detroit signal instantaneous fade in (from max atten to no atten instantaneously)
+	print("105.1MHz instantaneous fade in...")
+	
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	print("Instantaneously fade in now!")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(3)
+	
 def fade_out_AA(ser, maxAtten, step):
 	# AA signal fade out at constant rate
 	print("91.7MHz fading out... with step size ", step)
@@ -302,6 +338,42 @@ def fade_out_Det(ser, maxAtten, step):
 		nf_header.getFilterConfig_resp(ser)
 		var += step
 		time.sleep(1)
+	
+def fade_out_inst_AA(ser):
+	# AA signal instantaneous fade out (from max atten to no atten instantaneously)
+	print("91.7MHz instantaneous fade out...")
+	
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	print("Instantaneously fade out now!")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(35)
+	
+def fade_out_inst_Det(ser):
+	# Detroit signal instantaneous fade out (from max atten to no atten instantaneously)
+	print("105.1MHz instantaneous fade out...")
+	
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	print("Instantaneously fade out now!")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0)
+	ser.write(packet)
+	
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(35)
 	
 def handover_const_atten_AA_Det(ser, maxAtten, step):
 	# AA signal fade out at constant rate; Det signal fade in at constant rate
@@ -369,75 +441,109 @@ def handover_const_atten_Det_AA(ser, maxAtten, step):
 		var += step
 		time.sleep(3)
 
-def handover_unstable_simple_AA(ser, duration, period):
-	# AA signal is periodically toggled on/off
-	print("91.7MHz signal is unstable... toggled on/off every ", period, " seconds")
+def handover_inst_AA_Det(ser):
+	# Det signal handover to AA signal instantaneously
+	print("91.7MHz fades out instantaneously; 105.1MHz fades in instantaneously...")
 	
 	print("Setting preconditions...")
-	# first lock on to 91.7
-	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0)
 	ser.write(packet)
 	nf_header.getFilterConfig_resp(ser)
 	time.sleep(45)
-	# allow 105.1 while still locked on to 91.7
-	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	ser.write(packet)
-	nf_header.getFilterConfig_resp(ser)
-	time.sleep(3)
 	print("Preconditions are set.")
 	
-	timer = 0	# keeping track of time -> toggle signal every period
-	signalOn = 1	# flag for toggling signal on/off
-	periodCnt = 0	# keep count of the number of periods passed
+	print("Instantaneous fading now!")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
 	
-	while (timer < duration):
-		# toggle the signalOn flag every period
-		if ((timer != 0) and (timer % period == 0)):	
-			periodCnt += 1
-			print("Period count: ", periodCnt)
-			signalOn = 1 - signalOn
-			packet = nf_header.setFilterConfig_handover(signalOn, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-			ser.write(packet)
-			nf_header.getFilterConfig_resp(ser)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
 		
-		timer += 1
-		time.sleep(3)
-		
-def handover_unstable_simple_Det(ser, duration, period):
-	# Detroit signal is periodically toggled on/off
-	print("105.1MHz signal is unstable... toggled on/off every ", period, " seconds")
+def handover_inst_Det_AA(ser):
+	# Det signal handover to AA signal instantaneously
+	print("105.1MHz fades out instantaneously; 91.7MHz fades in instantaneously...")
 	
 	print("Setting preconditions...")
-	# first lock on to 105.1
-	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
 	ser.write(packet)
 	nf_header.getFilterConfig_resp(ser)
 	time.sleep(45)
-	# allow 91.7 while still locked on to 105.1
-	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	ser.write(packet)
-	nf_header.getFilterConfig_resp(ser)
-	time.sleep(3)
 	print("Preconditions are set.")
 	
-	timer = 0	# keeping track of time -> toggle signal every period
-	signalOn = 1	# flag for toggling signal on/off
-	periodCnt = 0	# keep count of the number of periods passed
+	print("Instantaneous fading now!")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0)
+	ser.write(packet)
 	
-	while (timer < duration):
-		# toggle the signalOn flag every period
-		if ((timer != 0) and (timer % period == 0)):	
-			periodCnt += 1
-			print("Period count: ", periodCnt)
-			signalOn = 1 - signalOn
-			packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, signalOn, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-			ser.write(packet)
-			nf_header.getFilterConfig_resp(ser)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
 		
-		timer += 1
-		time.sleep(3)
+# def handover_unstable_simple_AA(ser, duration, period):
+	# # AA signal is periodically toggled on/off
+	# print("91.7MHz signal is unstable... toggled on/off every ", period, " seconds")
 	
+	# print("Setting preconditions...")
+	# # first lock on to 91.7
+	# packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	# ser.write(packet)
+	# nf_header.getFilterConfig_resp(ser)
+	# time.sleep(45)
+	# # allow 105.1 while still locked on to 91.7
+	# packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	# ser.write(packet)
+	# nf_header.getFilterConfig_resp(ser)
+	# time.sleep(3)
+	# print("Preconditions are set.")
 	
+	# timer = 0	# keeping track of time -> toggle signal every period
+	# signalOn = 1	# flag for toggling signal on/off
+	# periodCnt = 0	# keep count of the number of periods passed
+	
+	# while (timer < duration):
+		# # toggle the signalOn flag every period
+		# if ((timer != 0) and (timer % period == 0)):	
+			# periodCnt += 1
+			# print("Period count: ", periodCnt)
+			# signalOn = 1 - signalOn
+			# packet = nf_header.setFilterConfig_handover(signalOn, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			# ser.write(packet)
+			# nf_header.getFilterConfig_resp(ser)
+		
+		# timer += 1
+		# time.sleep(3)
+		
+# def handover_unstable_simple_Det(ser, duration, period):
+	# # Detroit signal is periodically toggled on/off
+	# print("105.1MHz signal is unstable... toggled on/off every ", period, " seconds")
+	
+	# print("Setting preconditions...")
+	# # first lock on to 105.1
+	# packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	# ser.write(packet)
+	# nf_header.getFilterConfig_resp(ser)
+	# time.sleep(45)
+	# # allow 91.7 while still locked on to 105.1
+	# packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	# ser.write(packet)
+	# nf_header.getFilterConfig_resp(ser)
+	# time.sleep(3)
+	# print("Preconditions are set.")
+	
+	# timer = 0	# keeping track of time -> toggle signal every period
+	# signalOn = 1	# flag for toggling signal on/off
+	# periodCnt = 0	# keep count of the number of periods passed
+	
+	# while (timer < duration):
+		# # toggle the signalOn flag every period
+		# if ((timer != 0) and (timer % period == 0)):	
+			# periodCnt += 1
+			# print("Period count: ", periodCnt)
+			# signalOn = 1 - signalOn
+			# packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, signalOn, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			# ser.write(packet)
+			# nf_header.getFilterConfig_resp(ser)
+		
+		# timer += 1
+		# time.sleep(3)
 	
 # def simul_fade_in(ser, maxAtten, step):
 	# # fade in AA and Detroit signals simultaneously
