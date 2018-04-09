@@ -293,41 +293,6 @@ def fade_out_AA(ser, maxAtten, step):
 		nf_header.getFilterConfig_resp(ser)
 		var += step
 		time.sleep(3)
-		
-def real_fade_out_AA(ser, speed, wavelength, distance, height, duration, maxDist):
-	# simulate a realistic fade-out of 91.7MHz
-	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
-	#										max distance for signal cut-off (from Earth curvature)
-	runningLoss = 0
-	curAtten = 0
-	
-	for i in range(0, duration):
-		distance += speed
-		# if maxDist is reached, set to max attenuation
-		if (distance > maxDist or distance == maxDist):
-			print("Reached max distance.")
-			packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
-			ser.write(packet)
-			nf_header.getFilterConfig_resp(ser)
-			return
-		
-		else: 
-			runningLoss += nf_header.loss(speed, wavelength, distance)
-			if (runningLoss >= 1):
-				runningLoss -= 1
-				curAtten += 1
-				print("Time: ", i, ",	Current Attenuation: ", curAtten)
-				packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, curAtten, 0, 0, 0, 0, 0, 0, 0)
-				ser.write(packet)
-				nf_header.getFilterConfig_resp(ser)
-				time.sleep(1)
-				
-			else:
-				packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, curAtten, 0, 0, 0, 0, 0, 0, 0)
-				ser.write(packet)
-				nf_header.getFilterConfig_resp(ser)
-				time.sleep(1)
-			
 
 def fade_out_Det(ser, maxAtten, step):
 	# Det signal fade out at constant rate
@@ -499,6 +464,168 @@ def handover_inst_Det_AA(ser):
 	
 	nf_header.getFilterConfig_resp(ser)
 	time.sleep(45)
+
+################
+#				                 #
+# Realistic Test Cases  #
+#					             #
+################
+	
+def real_fade_out_AA(ser, speed, wavelength, distance, height, duration, maxDist):
+	# simulate a realistic fade-out of 91.7MHz
+	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
+	#										max distance for signal cut-off (from Earth curvature)
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	runningLoss = 0
+	curAtten = 0
+	
+	for i in range(0, duration):
+		distance += speed
+		# if maxDist is reached, set to max attenuation
+		if (distance > maxDist or distance == maxDist):
+			print ("Time: ", i)
+			print("Reached max distance.")
+			packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+			return
+		
+		else: 
+			runningLoss += nf_header.loss(speed, wavelength, distance)
+			if (runningLoss >= 1):
+				runningLoss -= 1
+				curAtten += 1
+				print("Time: ", i, ",	Current Attenuation: ", curAtten)
+				packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, curAtten, 0, 0, 0, 0, 0, 0, 0)
+				ser.write(packet)
+				nf_header.getFilterConfig_resp(ser)
+				time.sleep(1)
+				
+			else:
+				time.sleep(1)
+				
+def real_fade_out_Det(ser, speed, wavelength, distance, height, duration, maxDist):
+	# simulate a realistic fade-out of 105.1MHz
+	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
+	#										max distance for signal cut-off (from Earth curvature)
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	runningLoss = 0
+	curAtten = 0
+	
+	for i in range(0, duration):
+		distance += speed
+		# if maxDist is reached, set to max attenuation
+		if (distance > maxDist or distance == maxDist):
+			print ("Time: ", i)
+			print("Reached max distance.")
+			packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+			return
+		
+		else: 
+			runningLoss += nf_header.loss(speed, wavelength, distance)
+			if (runningLoss >= 1):
+				runningLoss -= 1
+				curAtten += 1
+				print("Time: ", i, ",	Current Attenuation: ", curAtten)
+				packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, curAtten, 0, 0, 0)
+				ser.write(packet)
+				nf_header.getFilterConfig_resp(ser)
+				time.sleep(1)
+				
+			else:
+				time.sleep(1)
+				
+def real_fade_in_AA(ser, speed, wavelength, distance, height, duration, endDist):
+	# simulate a realistic fade-out of 91.7MHz
+	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
+	#										max distance for signal cut-off (from Earth curvature)
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	runningGain = 0
+	curGain = 0
+	
+	for i in range(0, duration):
+		distance -= speed
+		# if endDist is reached, set to min attenuation
+		if (distance < endDist or distance == endDist):
+			print ("Time: ", i)
+			print("Reached end distance.")
+			packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+			return
+		
+		else: 
+			runningGain += nf_header.loss(speed, wavelength, distance)
+			if (runningGain >= 1):
+				runningGain -= 1
+				curGain += 1
+				print("Time: ", i, ",	Current Gain: ", curGain)
+				packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 8-curGain, 0, 0, 0, 0, 0, 0, 0)
+				ser.write(packet)
+				nf_header.getFilterConfig_resp(ser)
+				time.sleep(1)
+				
+			else:
+				time.sleep(1)
+				
+def real_fade_in_Det(ser, speed, wavelength, distance, height, duration, endDist):
+	# simulate a realistic fade-out of 91.7MHz
+	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
+	#										max distance for signal cut-off (from Earth curvature)
+	print("Setting preconditions...")
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+	time.sleep(45)
+	print("Preconditions are set.")
+	
+	runningGain = 0
+	curGain = 0
+	
+	for i in range(0, duration):
+		distance -= speed
+		# if endDist is reached, set to min attenuation
+		if (distance < endDist or distance == endDist):
+			print ("Time: ", i)
+			print("Reached end distance.")
+			packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			ser.write(packet)
+			nf_header.getFilterConfig_resp(ser)
+			return
+		
+		else: 
+			runningGain += nf_header.loss(speed, wavelength, distance)
+			if (runningGain >= 1):
+				runningGain -= 1
+				curGain += 1
+				print("Time: ", i, ",	Current Gain: ", curGain)
+				packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 8-curGain, 0, 0, 0)
+				ser.write(packet)
+				nf_header.getFilterConfig_resp(ser)
+				time.sleep(1)
+				
+			else:
+				time.sleep(1)
 		
 # def handover_unstable_simple_AA(ser, duration, period):
 	# # AA signal is periodically toggled on/off
