@@ -20,4 +20,4 @@ endDist = 33829.8		# at the end of the test case, arriving at MTCA, which is 338
 
 duration = 3600
 
-nf.real_fade_in_AA(com, speed, wavelength, distance, height, duration, endDist)
+nf.real_fade_in_AA(com, speed, wavelength, distance, duration, endDist)

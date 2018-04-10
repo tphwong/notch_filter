@@ -16,4 +16,4 @@ height = 349		# antenna height for 91.7MHz in meters
 duration = 3600	# duration of test case
 maxDist = 4120 * math.sqrt(height)	# end distance is distance right when AA signal is completely cut off (considering Eath's curvature)
 
-nf.real_fade_out_Det(com, speed, wavelength, distance, height, duration, maxDist)
+nf.real_fade_out_Det(com, speed, wavelength, distance, duration, maxDist)

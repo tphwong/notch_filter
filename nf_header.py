@@ -681,7 +681,7 @@ def getFilterConfig_resp(ser):
 				stopfreq=int.from_bytes(stopfreq,byteorder='big')/1000000
 				print("ch",i+1,"stopf:	%7.2f"%stopfreq,"MHz")
 				atten=packet[i*12+13]
-				print("ch",i+1,"stten:	%7.d"%atten,"dB")
+				print("ch",i+1,"atten:	%7.d"%atten,"dB")
 				outpwr=packet[i*12+14]
 				outpwr=-(outpwr&0x80)|(outpwr&0x7F)
 				print("ch",i+1,"outpwr:	%7.d"%outpwr,"dBm")
