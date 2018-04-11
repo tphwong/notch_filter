@@ -5,6 +5,8 @@
 # ver1.0	Last revised: 3/13/2018 	#
 #########################################
 
+# this is a script for the driver developer to test all the basic API functions
+
 import serial
 import time
 import nf_header

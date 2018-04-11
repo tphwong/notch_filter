@@ -5,6 +5,8 @@
 # ver1.0	Last revised: 3/13/2018 	#
 #########################################
 
+# this script runs through the basic API functions 
+
 import serial
 import time
 import nf, nf_header

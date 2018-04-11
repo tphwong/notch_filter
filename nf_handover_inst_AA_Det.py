@@ -4,6 +4,5 @@ import nf, nf_header
 
 # specify which COM port to open
 com = nf.comOpen('COM32')
-nf.fade_out_AA(com, 35, 1)	
-#nf.fade_out_Det(com, 35, 1)	
+nf.handover_inst_AA_Det(com)	
 nf.comClose(com)
