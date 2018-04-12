@@ -293,6 +293,10 @@ def fade_out_AA(ser, maxAtten, step):
 		nf_header.getFilterConfig_resp(ser)
 		var += step
 		time.sleep(3)
+		
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
 
 def fade_out_Det(ser, maxAtten, step):
 	# Det signal fade out at constant rate
@@ -326,6 +330,10 @@ def fade_out_Det(ser, maxAtten, step):
 		nf_header.getFilterConfig_resp(ser)
 		var += step
 		time.sleep(1)
+		
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
 	
 def fade_out_inst_AA(ser):
 	# AA signal instantaneous fade out (from max atten to no atten instantaneously)
@@ -339,11 +347,9 @@ def fade_out_inst_AA(ser):
 	print("Preconditions are set.")
 	
 	print("Instantaneously fade out now!")
-	packet = nf_header.setFilterConfig_handover(1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0)
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	ser.write(packet)
-	
 	nf_header.getFilterConfig_resp(ser)
-	time.sleep(35)
 	
 def fade_out_inst_Det(ser):
 	# Detroit signal instantaneous fade out (from max atten to no atten instantaneously)
@@ -357,11 +363,9 @@ def fade_out_inst_Det(ser):
 	print("Preconditions are set.")
 	
 	print("Instantaneously fade out now!")
-	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0)
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	ser.write(packet)
-	
 	nf_header.getFilterConfig_resp(ser)
-	time.sleep(35)
 	
 def handover_const_atten_AA_Det(ser, maxAtten, step):
 	# AA signal fade out at constant rate; Det signal fade in at constant rate
@@ -510,6 +514,10 @@ def real_fade_out_AA(ser, speed, wavelength, distance, duration, maxDist):
 			else:
 				time.sleep(1)
 				
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
+				
 def real_fade_out_Det(ser, speed, wavelength, distance, duration, maxDist):
 	# simulate a realistic fade-out of 105.1MHz
 	# parameters (in SI units): vehicle speed, signal wavelength, distance from MTCA to radio tower, antenna height, test duration,
@@ -548,6 +556,10 @@ def real_fade_out_Det(ser, speed, wavelength, distance, duration, maxDist):
 				
 			else:
 				time.sleep(1)
+				
+	packet = nf_header.setFilterConfig_handover(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	ser.write(packet)
+	nf_header.getFilterConfig_resp(ser)
 				
 def real_fade_in_AA(ser, speed, wavelength, distance, duration, endDist):
 	# simulate a realistic fade-out of 91.7MHz
